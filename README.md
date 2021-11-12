@@ -30,7 +30,7 @@ supply chain.
 
 For more details, see the TODOs in the page at
 src/routes/product/[id]/index.svelte, and in the backend route at
-src/routes/product/[id]/details.json.ts
+src/routes/product/[id]/details.ts
 
 The end goal here is to familiarize yourself with some of the tech that Bluebird
 uses, and to demonstrate that you can use these tools to build a simple feature.
