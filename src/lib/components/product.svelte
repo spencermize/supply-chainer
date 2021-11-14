@@ -3,7 +3,7 @@
     export let product:typeof PRODUCTS[0]
 </script>
 
-<h1 class="text-2xl font-bold leading-normal mb-1 border-b bg-blue-400 text-white px-10 py-3 flex items-center justify-between">
+<h1 class="text-2xl font-bold leading-normal bg-blue-400 text-white px-10 py-3 flex items-center justify-between">
     Product Data
     <small class="text-xl font-normal leading-normal text-white"><i class={product.icon}></i> {product.name}</small>
   </h1>

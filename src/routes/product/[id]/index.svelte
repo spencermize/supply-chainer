@@ -33,7 +33,8 @@ import Calculations from "$lib/components/calculations.svelte";
 import Map from "$lib/components/map.svelte";
 import Packaging from "$lib/components/packaging.svelte";
 import Product from "$lib/components/product.svelte";
- 
+
+let currentPackaging = null;
 </script>
 
 <div class="grid grid-cols-12 h-screen">
@@ -43,13 +44,13 @@ import Product from "$lib/components/product.svelte";
       <Product product={product}/>
     </div>
     <div class="shadow overflow-hidden sm:rounded-lg my-4">
-      <Packaging packaging={packaging}/>
+      <Packaging packaging={packaging} on:packagingHover={event => currentPackaging = event.detail}/>
     </div>
     <div class="shadow overflow-hidden sm:rounded-lg my-4">
       <Calculations meta={meta}/>
     </div>
   </div>
   <div class="right col-span-12 xl:col-span-8">
-    <Map product={product} packaging={packaging}/>
+    <Map product={product} packaging={packaging} currentPackaging={currentPackaging}/>
   </div>
 </div>

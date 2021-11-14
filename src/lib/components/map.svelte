@@ -14,8 +14,12 @@
 
     import type { PRODUCTS, PACKAGING } from "$lib/data";
     import { onMount, tick } from "svelte";
+    import Style from "ol/style/Style";
+    import Stroke from "ol/style/Stroke";
+    
     export let product: typeof PRODUCTS[0];
     export let packaging: typeof PACKAGING;
+    export let currentPackaging: number;
 
     let map: Map;
 
@@ -42,6 +46,15 @@
 
         const transitLayer = new VectorLayer({
             source: transitSource,
+            style: (feature) => {
+                console.log(feature);
+                return new Style({
+                    stroke: new Stroke({
+                        color: currentPackaging === feature.getId() ? 'blue' : 'grey',
+                        width: currentPackaging === feature.getId() ? 5 : 2
+                    })
+                });
+            }
         });
         map = new Map({
             target: "map",
@@ -53,6 +66,7 @@
 
     $: {
         if (map) {
+            currentPackaging; // Simply including this here makes the map get re-rendered when it changes, picking up on the new value.
             const productLocation = [
                 product.manufacturingLocation.longitude,
                 product.manufacturingLocation.latitude,
@@ -78,9 +92,10 @@
                 const features = new GeoJSON().readFeatures(arc, {
                     featureProjection: "EPSG:3857",
                 });
-                features.forEach((feature) =>
+                features.forEach((feature) => {
+                    feature.setId(item.id);
                     transitSource.addFeature(feature)
-                );
+                });
             });
             tick().then( () => {
                 map.getView().animate({zoom: 4}, {center: fromLonLat(productLocation)});
