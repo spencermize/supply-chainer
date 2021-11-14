@@ -8,7 +8,8 @@ import { PRODUCTS } from '$lib/data';
 export const get = async function(request: ServerRequest) {
   const productsToReturn = PRODUCTS.map(product => ({
     name: product.name,
-    id: product.id
+    id: product.id,
+    icon: product.icon
   }));
 
   // This response will implicitly be of type application/json since we're

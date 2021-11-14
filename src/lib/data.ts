@@ -7,6 +7,8 @@ export const PRODUCTS = [
     id: 12345,
     name: "Face cream",
     unitsPerYear: 100000,
+    // These icons aren't perfect, but you get the idea.
+    icon: 'fas fa-grin-alt',
     manufacturingLocation: {
       name: "Edison, NJ",
       latitude: 40.5274,
@@ -17,6 +19,7 @@ export const PRODUCTS = [
     id: 23456,
     name: "Toothpaste",
     unitsPerYear: 452000,
+    icon: 'fas fa-tooth',
     manufacturingLocation: {
       name: "Phoenix, AZ",
       latitude: 33.448333,
@@ -27,8 +30,10 @@ export const PRODUCTS = [
     id: 34567,
     name: "Shampoo",
     unitsPerYear: 238000,
+    icon: 'fas fa-pump-soap',
     manufacturingLocation: {
       name: "Seoul, South Korea",
+      // TODO: these coordinates appear incorrect
       latitude: 37.5666791,
       longitude: -126.9782914
     }
