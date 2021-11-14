@@ -27,7 +27,7 @@ import { page } from '$app/stores';
       <div class="inset-y-0 left-0 flex items-center sm:hidden">
       </div>
       <div class="flex-1 flex justify-center sm:items-stretch sm:justify-start">
-        <div class="flex flex-col xl:flex-row items-center font-extrabold text-3xl w-full">
+        <div class="flex flex-col items-center font-extrabold text-3xl w-full">
           <i class="fas fa-bezier-curve mr-5 text-5xl"></i><span>SupplyChainer</span>
         </div>
         <div class="hidden sm:block sm:ml-6">
@@ -35,13 +35,20 @@ import { page } from '$app/stores';
           </div>
         </div>
       </div>
-      <div class="inset-y-0 right-0 pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+      <div class="">
         <h1 class="text-2xl font-bold leading-normal mt-6">Products</h1>
 
         <ul>
         {#each products as product}
-          <li>
-            <a class="text-blue-100 hover:text-blue-400" class:text-blue-400={product.id.toString() === $page.params.id} href="/product/{product.id}"><i class={product.icon}></i> {product.name}</a>
+          <li class="pl-4">
+            <a 
+              class="text-blue-100 hover:text-blue-400 transition-all" 
+              class:text-blue-400={product.id.toString() === $page.params.id}
+              class:pl-4={product.id.toString() === $page.params.id}
+              href="/product/{product.id}"
+            >
+                <i class={product.icon}></i> {product.name}
+            </a>
           </li>
         {/each}
         </ul>

@@ -47,7 +47,6 @@
         const transitLayer = new VectorLayer({
             source: transitSource,
             style: (feature) => {
-                console.log(feature);
                 return new Style({
                     stroke: new Stroke({
                         color: currentPackaging === feature.getId() ? 'blue' : 'grey',

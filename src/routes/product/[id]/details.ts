@@ -1,5 +1,5 @@
 import type { ServerRequest } from '@sveltejs/kit/types/hooks';
-import { computeSupplyChainDistance, computeAnnualPackagingWeight, computeAnnualPackagingPieces } from '$lib/helpers/compute-meta';
+import { computeSupplyChainDistance, computeAnnualPackagingWeight, computeAnnualPackagingPieces, computeAllMeta } from '$lib/helpers/compute-meta';
 import { lookupPackaging, lookupProduct } from '$lib/helpers/lookups';
 
 // This endpoint will always run on the server, in response to GET requests
@@ -19,11 +19,7 @@ export const get = async function (request: ServerRequest) {
     // returning a JS object without declaring a content-type.
     if (product) {
       const packaging = lookupPackaging(id);
-      const meta = {
-        supplyChainLength: computeSupplyChainDistance(product, packaging),
-        annualPackagingWeight: computeAnnualPackagingWeight(product, packaging),
-        annualPackagingPieces: computeAnnualPackagingPieces(product, packaging)
-      };
+      const meta = computeAllMeta(product, packaging);
       return {
         body: {
           product,

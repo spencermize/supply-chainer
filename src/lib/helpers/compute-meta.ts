@@ -44,3 +44,10 @@ export function computeAnnualPackagingPieces(product: typeof PRODUCTS[0], packag
     return packaging.length * product.unitsPerYear;
 }
 
+export function computeAllMeta(product: typeof PRODUCTS[0], packaging: typeof PACKAGING) {
+    return {
+        supplyChainLength: computeSupplyChainDistance(product, packaging),
+        annualPackagingWeight: computeAnnualPackagingWeight(product, packaging),
+        annualPackagingPieces: computeAnnualPackagingPieces(product, packaging)
+    }
+}
