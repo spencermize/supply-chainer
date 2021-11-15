@@ -1,7 +1,10 @@
 <script lang="ts">
     import type { PACKAGING } from '$lib/data';
 	import { createEventDispatcher } from 'svelte';
-    export let packaging:typeof PACKAGING
+    import { CITIES as items } from '$lib/cities';
+    import Select from 'svelte-select';    
+    
+    export let packaging:typeof PACKAGING;
 
     let currentPackaging = null;
     const dispatch = createEventDispatcher();
@@ -25,7 +28,15 @@
     </h3>
     <div class="mb-3 pt-0 sm:grid sm:grid-cols-2 sm:gap-4">
         <span class="text-sm font-medium text-gray-500 flex self-center">Manufacturing Location</span>
-        <span class="mt-1 text-sm text-gray-900 sm:mt-0">{manufacturingLocation.name}</span>
+        <Select
+        {items}
+        value={manufacturingLocation.name}
+        labelIdentifier='name'
+        optionIdentifier='name'
+        showIndicator={true}
+        isClearable={false}
+        on:select={e => dispatch('manufacturingLocationChange', {detail: e.detail, id})}
+      />
 
         <label class="text-sm font-medium text-gray-500 flex self-center" for="weightInGrams">Weight in Grams</label>
         <input

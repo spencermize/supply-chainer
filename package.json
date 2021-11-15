@@ -28,6 +28,7 @@
 		"@turf/great-circle": "^6.5.0",
 		"@types/ngeohash": "^0.6.4",
 		"ngeohash": "^0.6.3",
-		"ol": "^6.9.0"
+		"ol": "^6.9.0",
+		"svelte-select": "^4.4.4"
 	}
 }

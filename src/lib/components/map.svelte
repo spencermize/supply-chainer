@@ -97,10 +97,10 @@
                 });
             });
             tick().then( () => {
-                map.getView().animate({zoom: 4}, {center: fromLonLat(productLocation)});
+                map.getView().animate({zoom: 3}, {center: fromLonLat(productLocation)});
             });
         }
     }
 </script>
 
-<div id="map" class="h-full" />
+<div id="map" class="h-screen" />

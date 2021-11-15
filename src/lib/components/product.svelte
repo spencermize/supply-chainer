@@ -1,5 +1,7 @@
 <script lang="ts">
   import type { PRODUCTS } from '$lib/data';
+  import { CITIES as items } from '$lib/cities';
+  import Select from 'svelte-select';
   import { createEventDispatcher } from 'svelte';
   export let product:typeof PRODUCTS[0];
 
@@ -12,7 +14,17 @@
 </h1>
 <div class="my-3 py-3 sm:grid sm:grid-cols-2 sm:gap-4 px-10">
   <span class="text-sm font-medium text-gray-500 flex self-center">Manufacturing Location</span>
-  <span class="mt-1 text-sm text-gray-900 sm:mt-0">{product.manufacturingLocation.name}</span>        
+  <!-- <span class="mt-1 text-sm text-gray-900 sm:mt-0">{product.manufacturingLocation.name}</span>         -->
+  <!-- {product.manufacturingLocation.name} -->
+  <Select
+    {items}
+    value={product.manufacturingLocation.name}
+    labelIdentifier='name'
+    optionIdentifier='name'
+    showIndicator={true}
+    isClearable={false}
+    on:select={e => dispatch('manufacturingLocationChange', e.detail)}
+  />
   <label class="text-sm font-medium text-gray-500 flex self-center" for="unitsPerYear">Units Per Year</label>
   <input
     type="number"

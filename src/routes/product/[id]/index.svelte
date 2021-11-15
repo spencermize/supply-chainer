@@ -55,15 +55,27 @@ function handleUnitsChange(event: CustomEvent<typeof PRODUCTS[0]>) {
   meta = computeAllMeta(product, packaging)
 }
 
+function hanldeProductManufacturingLocationChange(event: CustomEvent<{name: string, longitude: number, latitude: number}>) {
+  product.manufacturingLocation = event.detail;
+  meta = computeAllMeta(product, packaging);
+}
+
+function hanldePackagingManufacturingLocationChange(event: CustomEvent<{detail: {name: string, longitude: number, latitude: number}, id: number}>) {
+  const pack = packaging.find(pack => pack.id === event.detail.id);
+  pack.manufacturingLocation = event.detail.detail;
+  meta = computeAllMeta(product, packaging);
+}
+
 </script>
 
 <div class="grid grid-cols-12 h-screen">
-  <div class="left bg-white p-4 col-span-12 xl:col-span-5">
+  <div class="left bg-white p-4 col-span-12 xl:col-span-5 h-screen overflow-scroll">
     <a href="/"><i class="fas fa-chevron-left mr-2"></i> Back to Dashboard</a>
-    <div class="shadow overflow-hidden sm:rounded-lg my-4">
+    <div class="shadow sm:rounded-lg my-4">
       <Product
         product={product}
         on:unitsChange={handleUnitsChange}
+        on:manufacturingLocationChange={hanldeProductManufacturingLocationChange}
       />
     </div>
     <div class="shadow overflow-hidden sm:rounded-lg my-4">
@@ -71,6 +83,7 @@ function handleUnitsChange(event: CustomEvent<typeof PRODUCTS[0]>) {
         packaging={packaging}
         on:packagingHover={event => currentPackaging = event.detail}
         on:weightChange={handleWeightChange}
+        on:manufacturingLocationChange={hanldePackagingManufacturingLocationChange}
       />
     </div>
     <div class="shadow overflow-hidden sm:rounded-lg my-4">
