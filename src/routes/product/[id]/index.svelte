@@ -78,7 +78,7 @@ function hanldePackagingManufacturingLocationChange(event: CustomEvent<{detail: 
         on:manufacturingLocationChange={hanldeProductManufacturingLocationChange}
       />
     </div>
-    <div class="shadow overflow-hidden sm:rounded-lg my-4">
+    <div class="shadow sm:rounded-lg my-4">
       <Packaging
         packaging={packaging}
         on:packagingHover={event => currentPackaging = event.detail}
