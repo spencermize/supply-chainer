@@ -23,11 +23,12 @@
 
 <script lang="ts">
 import type { PRODUCTS, PACKAGING } from "$lib/data";
+import { CITIES } from '$lib/cities';
 import Calculations from "$lib/components/calculations.svelte";
 import Map from "$lib/components/map.svelte";
 import Packaging from "$lib/components/packaging.svelte";
 import Product from "$lib/components/product.svelte";
-import { computeAllMeta, computeAnnualPackagingWeight } from "$lib/helpers/compute-meta";
+import { computeAllMeta } from "$lib/helpers/compute-meta";
 
 // This special "export let" syntax is to define this component's props in Svelte.
 // As part of SvelteKit, the props will be set from the props field in the
@@ -55,14 +56,19 @@ function handleUnitsChange(event: CustomEvent<typeof PRODUCTS[0]>) {
   meta = computeAllMeta(product, packaging)
 }
 
-function hanldeProductManufacturingLocationChange(event: CustomEvent<{name: string, longitude: number, latitude: number}>) {
-  product.manufacturingLocation = event.detail;
+function hanldeProductManufacturingLocationChange(event: CustomEvent<{name: string}>) {
+  product.manufacturingLocation = CITIES.find(city => city.name === event.detail.name);
   meta = computeAllMeta(product, packaging);
 }
 
-function hanldePackagingManufacturingLocationChange(event: CustomEvent<{detail: {name: string, longitude: number, latitude: number}, id: number}>) {
-  const pack = packaging.find(pack => pack.id === event.detail.id);
-  pack.manufacturingLocation = event.detail.detail;
+function hanldePackagingManufacturingLocationChange(event: CustomEvent<{name: string, id: number}>) {
+  packaging = packaging.map(pack => {
+    if(pack.id === event.detail.id){
+      pack.manufacturingLocation = CITIES.find(city => city.name === event.detail.name);
+    }
+
+    return pack;
+  });
   meta = computeAllMeta(product, packaging);
 }
 

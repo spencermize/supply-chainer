@@ -35,7 +35,7 @@
         optionIdentifier='name'
         showIndicator={true}
         isClearable={false}
-        on:select={e => dispatch('manufacturingLocationChange', {detail: e.detail, id})}
+        on:select={e => dispatch('manufacturingLocationChange', {...e.detail, id})}
       />
 
         <label class="text-sm font-medium text-gray-500 flex self-center" for="weightInGrams">Weight in Grams</label>

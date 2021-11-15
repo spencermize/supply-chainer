@@ -1261,7 +1261,7 @@ export const CITIES = [
         "longitude": 109.40698
     },
     {
-        "name": "London",
+        "name": "London, United Kingdom",
         "latitude": 51.50853,
         "longitude": -0.12574
     },
@@ -1586,7 +1586,7 @@ export const CITIES = [
         "longitude": 105.06216
     },
     {
-        "name": "New York City",
+        "name": "New York, NY",
         "latitude": 40.71427,
         "longitude": -74.00597
     },
@@ -1841,7 +1841,7 @@ export const CITIES = [
         "longitude": 46.72185
     },
     {
-        "name": "Rome",
+        "name": "Rome, Italy",
         "latitude": 41.89193,
         "longitude": 12.51133
     },
@@ -1936,6 +1936,11 @@ export const CITIES = [
         "longitude": 141.35
     },
     {
+        "name": "Secaucus, NJ",
+        "latitude": 40.7899291,
+        "longitude": -74.0566735
+    },
+    {
         "name": "Semarang",
         "latitude": -6.99306,
         "longitude": 110.42083
@@ -1956,7 +1961,7 @@ export const CITIES = [
         "longitude": 126.9784
     },
     {
-        "name": "Shanghai",
+        "name": "Shanghai, China",
         "latitude": 31.22222,
         "longitude": 121.45806
     },
