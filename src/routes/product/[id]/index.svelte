@@ -35,9 +35,9 @@ import { computeAllMeta } from "$lib/helpers/compute-meta";
 // return value from `load` above.
 export let product:typeof PRODUCTS[0] = null;
 export let packaging:typeof PACKAGING = [];
-export let meta = null;
 
 let currentPackaging = null;
+let meta;
 
 function handleWeightChange(event: CustomEvent<{weightG: number, id: number}>) {
   packaging = packaging.map(pack => {
@@ -48,17 +48,17 @@ function handleWeightChange(event: CustomEvent<{weightG: number, id: number}>) {
     return pack;
   });
 
-  meta = computeAllMeta(product, packaging);
+  // meta = computeAllMeta(product, packaging);
 }
 
 function handleUnitsChange(event: CustomEvent<typeof PRODUCTS[0]>) {
   product = event.detail;
-  meta = computeAllMeta(product, packaging)
+  // meta = computeAllMeta(product, packaging);
 }
 
 function hanldeProductManufacturingLocationChange(event: CustomEvent<{name: string}>) {
   product.manufacturingLocation = CITIES.find(city => city.name === event.detail.name);
-  meta = computeAllMeta(product, packaging);
+  // meta = computeAllMeta(product, packaging);
 }
 
 function hanldePackagingManufacturingLocationChange(event: CustomEvent<{name: string, id: number}>) {
@@ -69,9 +69,12 @@ function hanldePackagingManufacturingLocationChange(event: CustomEvent<{name: st
 
     return pack;
   });
-  meta = computeAllMeta(product, packaging);
+
 }
 
+$: {
+  meta = computeAllMeta(product, packaging);
+}
 </script>
 
 <div class="grid grid-cols-12 h-screen">

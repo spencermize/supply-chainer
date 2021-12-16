@@ -1,5 +1,5 @@
 import type { ServerRequest } from '@sveltejs/kit/types/hooks';
-import { computeSupplyChainDistance, computeAnnualPackagingWeight, computeAnnualPackagingPieces, computeAllMeta } from '$lib/helpers/compute-meta';
+import { computeAllMeta } from '$lib/helpers/compute-meta';
 import { lookupPackaging, lookupProduct } from '$lib/helpers/lookups';
 
 // This endpoint will always run on the server, in response to GET requests

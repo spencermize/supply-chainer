@@ -93,7 +93,7 @@
                 });
                 features.forEach((feature) => {
                     feature.setId(item.id);
-                    transitSource.addFeature(feature)
+                    transitSource.addFeature(feature);
                 });
             });
             tick().then( () => {
