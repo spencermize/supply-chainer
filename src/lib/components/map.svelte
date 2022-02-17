@@ -1,5 +1,5 @@
 <script lang="ts">
-    import greatCirlce from "@turf/great-circle";
+    import greatCircle from "@turf/great-circle";
     import Stamen from "ol/source/Stamen";
     import Map from "ol/Map";
     import View from "ol/View";
@@ -80,7 +80,7 @@
 
             transitSource.clear();
             packaging.forEach((item) => {
-                const arc = greatCirlce(
+                const arc = greatCircle(
                     [
                         item.manufacturingLocation.longitude,
                         item.manufacturingLocation.latitude,
